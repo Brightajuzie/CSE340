@@ -6,25 +6,39 @@
  * Require Statements
  *************************/
 const express = require("express")
-const env = require("dotenv").config()
+const expressLayouts = require("express-ejs-layouts")
+const dotenv = require("dotenv").config()
 const app = express()
-const static = require("./routes/static")
+const staticRoute = require("./routes/static") // Renamed from 'static' to avoid conflict with express.static
+
+/* ***********************
+ * View Engine & Layouts
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "layouts/layout") 
+ 
+
+/* ***********************
+ * Static Assets
+ *************************/
+app.use(express.static('public')) // CRITICAL: This serves your CSS and Images
+
 
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+app.use("/", staticRoute)
 
 /* ***********************
  * Local Server Information
- * Values from .env (environment) file
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const port = process.env.PORT || 3000 // Added fallback port
+const host = process.env.HOST || 'localhost'
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
 app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
+  console.log(`App listening on http://${host}:${port}`)
 })

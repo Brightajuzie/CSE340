@@ -1,6 +1,128 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/******* Global Setup *******/
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Header & Navigation --- */
+header {
+    padding: 10px 2%;
+}
+
+#top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    background-color: #333;
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Added for mobile safety */
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #444;
+}
+
+/* --- Hero Section --- */
+#hero-banner {
+    position: relative;
+    width: 96%;
+    margin: 20px auto;
+}
+
+#hero-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-content {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.85); /* Slightly more opaque for readability */
+    padding: 15px;
+    border: 1px solid #3a3a3a;
+    z-index: 10; /* Ensures it stays on top of image */
+}
+
+.btn-primary {
+    background-color: #3a3a3a;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* --- Home Grid (Mobile-First) --- */
+.home-grid {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+    padding: 2%;
+}
+
+.upgrade-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Correct 2x2 grid */
+    gap: 15px;
+}
+
+.card {
+    background-color: #4c96d7;
+    border: 1px solid #333;
+    text-align: center;
+    padding: 10px;
+}
+
+.card img {
+    max-width: 80px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+    background-color: white; /* Often required for car part icons */
+}
+
+/* --- Desktop Layout (768px and up) --- */
+@media (min-width: 768px) {
+    .home-grid {
+        flex-direction: row-reverse; /* Reviews move to the right, Upgrades on left */
+        align-items: flex-start;
+    }
+
+    #delorean-upgrades, #reviews {
+        flex: 1; /* Gives equal weight to both columns */
+    }
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
 }
