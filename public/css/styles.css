@@ -126,3 +126,19 @@ footer {
     border-top: 1px solid #ccc;
     margin-top: 30px;
 }
+/* Small screen: stacked */
+#detail-display {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Large screen: side-by-side */
+@media screen and (min-width: 768px) {
+  #detail-display {
+    flex-direction: row;
+    gap: 20px;
+  }
+  #detail-display img {
+    max-width: 50%;
+  }
+}

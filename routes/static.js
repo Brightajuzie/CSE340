@@ -9,3 +9,4 @@ router.get("/", (req, res) => {
 });
 
 module.exports = router;
+router.get("/trigger-error", utilities.handleErrors(invCont.triggerError));

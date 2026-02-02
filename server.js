@@ -42,3 +42,15 @@ const host = process.env.HOST || 'localhost'
 app.listen(port, () => {
   console.log(`App listening on http://${host}:${port}`)
 })
+/* ***********************
+* Express Error Handler
+* *************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
